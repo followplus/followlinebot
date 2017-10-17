@@ -11,7 +11,7 @@ const config = {
 */
 
 const config = {
-  channelAccessToken: '3NI2H6cTit07WzGMjeT+eVuT6XTCmJ887/h7MaGxZPywSwVTXDyqiDP5J7vYtQmzXD02341vXEGVnjzm6mM4x54asOM5Ebe9O/jtGMyIWwTVOaQIuz8Kb2DI+77XsoKvbqInRA8QWiPcVsgVlHgaSgdB04t89/1O/w1cDnyilFU='
+  channelAccessToken: '3NI2H6cTit07WzGMjeT+eVuT6XTCmJ887/h7MaGxZPywSwVTXDyqiDP5J7vYtQmzXD02341vXEGVnjzm6mM4x54asOM5Ebe9O/jtGMyIWwTVOaQIuz8Kb2DI+77XsoKvbqInRA8QWiPcVsgVlHgaSgdB04t89/1O/w1cDnyilFU=',
   channelSecret: 'ed4470bbaf9d7871bfbb1b2666fdd52f'
 }
 
