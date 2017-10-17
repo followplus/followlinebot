@@ -13,6 +13,25 @@ app.set('port', (process.env.PORT || 5000));
 app.post('/webhook', middleware(config), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
+  const event = req.body.events[0];
+
+  if (event.type === 'message') {
+    const message = event.message;
+    if (message.type === 'text' && message.text === 'bye') {
+      if (event.source.type === 'room') {
+        client.leaveRoom(event.source.roomId);
+      } else if (event.source.type === 'group') {
+        client.leaveGroup(event.source.groupId);
+      } else {
+        client.replyMessage(event.replyToken, {
+          type: 'text',
+          text: 'I cannot leave a 1-on-1 chat!',
+        });
+      }
+    }
+  }
+
+
 });
 
 app.listen(app.get('port'), function() {
