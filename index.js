@@ -25,7 +25,14 @@ app.post('/webhook', middleware(config), (req, res) => {
     const message = event.message;
     if (message.type === 'text' && message.text === 'bye') {
       console.log("USER ID:"+event.source.userId);
-      client.pushMessage(event.source.userId, { type: 'text', text: 'hello, world' });
+      client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'FROM REPLY TOKEN'
+      });
+      client.pushMessage(event.source.userId, { 
+        type: 'text', 
+	text: 'FROM PUSH MESSAGE' 
+      });
     }
   }
 
