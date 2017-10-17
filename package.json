@@ -13,7 +13,8 @@
   "author": "assawin",
   "license": "MIT",
   "dependencies": {
-    "@line/bot-sdk": "^3.1.1"
+    "@line/bot-sdk": "^3.1.1",
+    "express": "^4.16.2"
   },
   "engines": {
     "node": "4.1.1"
