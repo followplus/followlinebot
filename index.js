@@ -1,10 +1,17 @@
-const express = require('express')
+var express = require('express');
+var app     = express();
 
-const app = express()
+app.set('port', (process.env.PORT || 5000));
 
-app.post('/webhook', (req, res) => {
-  console.log(req);
-  res.json({})
-})
-
-app.listen(8080)
+//For avoidong Heroku $PORT error
+app.get('/test', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+});
+app.post('/webhook', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+});
+app.listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
