@@ -28,8 +28,7 @@ app.post('/webhook', middleware(config), (req, res) => {
       client.replyMessage(event.replyToken, {
         type: 'text',
         text: 'FROM REPLY TOKEN'
-      });
-      client.catch((err) => {
+      }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
         }
@@ -37,6 +36,10 @@ app.post('/webhook', middleware(config), (req, res) => {
       client.pushMessage(event.source.userId, { 
         type: 'text', 
 	text: 'FROM PUSH MESSAGE' 
+      }).catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
       });
     }
   }
