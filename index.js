@@ -24,17 +24,8 @@ app.post('/webhook', middleware(config), (req, res) => {
   if (event.type === 'message') {
     const message = event.message;
     if (message.type === 'text' && message.text === 'bye') {
-      if (event.source.type === 'room') {
-        client.leaveRoom(event.source.roomId);
-      } else if (event.source.type === 'group') {
-        client.leaveGroup(event.source.groupId);
-      } else {
-        client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: 'I cannot leave a 1-on-1 chat!',
-        });
-	client.pushMessage(event.source.userId, { type: 'text', text: 'hello, world' });
-      }
+      console.log("USER ID:"+event.source.userId);
+      client.pushMessage(event.source.userId, { type: 'text', text: 'hello, world' });
     }
   }
 
