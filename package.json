@@ -4,7 +4,7 @@
   "description": "linepot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "keywords": [
     "ex",
@@ -16,6 +16,6 @@
     "@line/bot-sdk": "^3.1.1"
   },
   "engines": {
-    "node": "6.2.2"
+    "node": "4.1.1"
   }
 }
