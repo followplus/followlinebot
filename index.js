@@ -29,13 +29,17 @@ app.post('/webhook', middleware(config), (req, res) => {
         type: 'text',
         text: 'FROM REPLY TOKEN'
       });
+      client.catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
+      });
       client.pushMessage(event.source.userId, { 
         type: 'text', 
 	text: 'FROM PUSH MESSAGE' 
       });
     }
   }
-
 
 });
 
