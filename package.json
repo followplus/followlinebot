@@ -1,0 +1,21 @@
+{
+  "name": "followlinebot",
+  "version": "1.0.0",
+  "description": "linepot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ex",
+    "bot"
+  ],
+  "author": "assawin",
+  "license": "MIT",
+  "dependencies": {
+    "@line/bot-sdk": "^3.1.1"
+  },
+  "engines": {
+    "node": "6.2.2"
+  }
+}
