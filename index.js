@@ -10,6 +10,7 @@ app.get('/test', function(request, response) {
 });
 app.post('/webhook', function(request, response) {
     var result = 'App is running'
+    console.log(request);
     response.send(result);
 });
 app.listen(app.get('port'), function() {
