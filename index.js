@@ -11,7 +11,7 @@ const config = {
 app.set('port', (process.env.PORT || 5000));
 
 app.post('/webhook', middleware(config), (req, res) => {
-  consoel.log(req.body.events);
+  console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
 });
 
