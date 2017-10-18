@@ -19,6 +19,36 @@ const client = new Client(configDev);
 
 app.set('port', (process.env.PORT || 5000));
 
+app.post('/webhookdev', middleware(configDev), (req, res) => {
+  console.log(req.body.events);
+  res.json(req.body.events) // req.body will be webhook event object
+  const event = req.body.events[0];
+
+  if (event.type === 'message') {
+    const message = event.message;
+    if (message.type === 'text' && message.text === 'bye') {
+      console.log("USER ID:"+event.source.userId);
+      client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'FROM REPLY TOKEN'
+      }).catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
+      });
+      client.pushMessage(event.source.userId, { 
+        type: 'text', 
+	text: 'FROM PUSH MESSAGE' 
+      }).catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
+      });
+    }
+  }
+
+});
+
 app.post('/webhook', middleware(config), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
