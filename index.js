@@ -39,7 +39,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
   const event = req.body.events[0];
   if (event.type === 'message') {
     const message = event.message;
-    if (message.type === 'text' && message.text === 'Bot Status') {
+    if (message.type === 'text' && message.text === 'BotStatus') {
       console.log("USER ID:"+event.source.userId);
       client.replyMessage(event.replyToken, {
         type: 'text',
@@ -48,7 +48,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
         }
-      });
+      });	    
     }
   }
 });
@@ -60,11 +60,11 @@ app.post('/webhookdev', middleware(configDev), (req, res) => {
   const event = req.body.events[0];
   if (event.type === 'message') {
     const message = event.message;
-    if (message.type === 'text' && message.text === 'bye') {
+    if (message.type === 'text' && message.text === 'BotStatus') {
       console.log("USER ID:"+event.source.userId);
       client.replyMessage(event.replyToken, {
         type: 'text',
-        text: 'FROM REPLY TOKEN'
+        text: 'I\'m Running'
       }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
@@ -72,7 +72,7 @@ app.post('/webhookdev', middleware(configDev), (req, res) => {
       });
       client.pushMessage(event.source.userId, { 
         type: 'text', 
-	text: 'FROM PUSH MESSAGE' 
+	text: 'I\'m Running'
       }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
@@ -89,11 +89,11 @@ app.post('/webhook', middleware(config), (req, res) => {
   const event = req.body.events[0];
   if (event.type === 'message') {
     const message = event.message;
-    if (message.type === 'text' && message.text === 'bye') {      
+    if (message.type === 'text' && message.text === 'BotStatus') {      
       console.log("USER ID:"+event.source.userId);
       client.replyMessage(event.replyToken, {
         type: 'text',
-        text: 'FROM REPLY TOKEN'
+        text: 'I\'m Running'
       }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
@@ -101,7 +101,7 @@ app.post('/webhook', middleware(config), (req, res) => {
       });
       client.pushMessage(event.source.userId, { 
         type: 'text', 
-	text: 'FROM PUSH MESSAGE' 
+	text: 'I\'m Running'
       }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
