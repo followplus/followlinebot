@@ -23,7 +23,7 @@ app.post('/webhookdev', middleware(configDev), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
   const event = req.body.events[0];
-
+  console.log(event);
   if (event.type === 'message') {
     const message = event.message;
     if (message.type === 'text' && message.text === 'bye') {
