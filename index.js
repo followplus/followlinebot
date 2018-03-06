@@ -54,7 +54,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
       console.log("USER ID:"+event.source.userId);
       client3bb.replyMessage(event.replyToken, {
         type: 'text',
-        text: 'I\'m Running'
+        text: 'I\'m Running : '+event.source.groupId
       }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
@@ -75,7 +75,7 @@ app.post('/webhookdev', middleware(configDev), (req, res) => {
       console.log("USER ID:"+event.source.userId);
       client.replyMessage(event.replyToken, {
         type: 'text',
-        text: 'I\'m Running'
+        text: 'I\'m Running : '+event.source.groupId
       }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
@@ -104,7 +104,7 @@ app.post('/webhook', middleware(config), (req, res) => {
       console.log("USER ID:"+event.source.userId);
       client.replyMessage(event.replyToken, {
         type: 'text',
-        text: 'I\'m Running'
+        text: 'I\'m Running : '+event.source.groupId
       }).catch((err) => {
         if (err instanceof HTTPError) {
           console.error(err.statusCode);
