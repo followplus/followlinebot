@@ -19,14 +19,14 @@ const client = new Client(configDev);
 
 app.set('port', (process.env.PORT || 5000));
 
-app.post('/msgdev',(req, res) => {
+app.get('/msgdev/:groupId/:msg',(req, res) => {
   		
-	client.pushMessage('Cdac78612063d56cf72edde22bfbb7513', {
+	client.pushMessage(req.params.groupId, {
   		type: 'text',
-  		text: 'hello, world DEV',
+  		text: req.params.msg,
 	});
-	console.log("MSG TO GROUP : OK");
-	res.send("Message To Group");
+	console.log("Group : "+req.params.groupId+" Message :"+req.params.msg);
+	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
 });	
 
 
