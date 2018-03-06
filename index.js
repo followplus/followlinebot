@@ -36,7 +36,7 @@ app.get('/msgdev/:groupId/:msg',(req, res) => {
 
 app.get('/msg3bb/:groupId/:msg',(req, res) => {
   		
-	client.pushMessage(req.params.groupId, {
+	client3bb.pushMessage(req.params.groupId, {
   		type: 'text',
   		text: req.params.msg,
 	});
