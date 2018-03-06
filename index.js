@@ -20,6 +20,7 @@ const config3BB = {
 }
 
 const client = new Client(configDev);
+const clien3bb = new Client(config3BB);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -41,7 +42,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
     const message = event.message;
     if (message.type === 'text' && message.text === 'BotStatus') {
       console.log("USER ID:"+event.source.userId);
-      client.replyMessage(event.replyToken, {
+      clien3bb.replyMessage(event.replyToken, {
         type: 'text',
         text: 'I\'m Running'
       }).catch((err) => {
