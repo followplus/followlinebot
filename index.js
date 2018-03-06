@@ -19,6 +19,21 @@ const client = new Client(configDev);
 
 app.set('port', (process.env.PORT || 5000));
 
+app.get('/msgdev', middleware(configDev), (req, res) => {
+	client.pushMessage('Cdac78612063d56cf72edde22bfbb7513', {
+  		type: 'text',
+  		text: 'hello, world DEV',
+	});
+});	
+
+app.get('/msg', middleware(configDev), (req, res) => {
+	client.pushMessage('Cdac78612063d56cf72edde22bfbb7513', {
+  		type: 'text',
+  		text: 'hello, world DEV',
+	});
+});
+
+
 app.post('/webhookdev', middleware(configDev), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
