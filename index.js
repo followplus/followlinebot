@@ -19,7 +19,7 @@ const client = new Client(configDev);
 
 app.set('port', (process.env.PORT || 5000));
 
-app.get('/msgdev', middleware(configDev), (req, res) => {
+app.post('/msgdev', middleware(configDev), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
   const event = req.body.events[0];
@@ -32,7 +32,7 @@ app.get('/msgdev', middleware(configDev), (req, res) => {
 	*/
 });	
 
-app.get('/msg', middleware(config), (req, res) => {
+app.post('/msg', middleware(config), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
   const event = req.body.events[0];
