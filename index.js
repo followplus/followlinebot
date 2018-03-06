@@ -20,13 +20,13 @@ const client = new Client(configDev);
 app.set('port', (process.env.PORT || 5000));
 
 app.post('/msgdev',(req, res) => {
-  console.log(req);
-	/*
+  		
 	client.pushMessage('Cdac78612063d56cf72edde22bfbb7513', {
   		type: 'text',
   		text: 'hello, world DEV',
 	});
-	*/
+	console.log("MSG TO GROUP : OK");
+	res.send("Message To Group");
 });	
 
 
