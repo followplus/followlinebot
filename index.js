@@ -15,8 +15,8 @@ const configDev = {
 }
 
 const config3BB = {
-  channelAccessToken: '3NI2H6cTit07WzGMjeT+eVuT6XTCmJ887/h7MaGxZPywSwVTXDyqiDP5J7vYtQmzXD02341vXEGVnjzm6mM4x54asOM5Ebe9O/jtGMyIWwTVOaQIuz8Kb2DI+77XsoKvbqInRA8QWiPcVsgVlHgaSgdB04t89/1O/w1cDnyilFU=',
-  channelSecret: 'ed4470bbaf9d7871bfbb1b2666fdd52f'
+  channelAccessToken: 'nezKTA5GMuKLlxdY+kvdWlhEpRaL9o+CC+shoZvtoBqfNppmBpGxx4LK4INhxxWM8Arb9J1YYQ/0J4awOfUjD3TAGCSLyNh4PYliqGkmk/cVWcxjGBQI/iM2FoY/w7DeMRO6UkxE9emUSNqCDVTmQgdB04t89/1O/w1cDnyilFU=',
+  channelSecret: '726564d0dd1ad16110d6dbabf9b93158'
 }
 
 const client = new Client(configDev);
