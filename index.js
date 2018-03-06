@@ -57,6 +57,7 @@ app.post('/webhook', middleware(config), (req, res) => {
   if (event.type === 'message') {
     const message = event.message;
     if (message.type === 'text' && message.text === 'bye') {
+      console.log(event);
       console.log("USER ID:"+event.source.userId);
       client.replyMessage(event.replyToken, {
         type: 'text',
