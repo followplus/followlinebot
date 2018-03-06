@@ -34,6 +34,16 @@ app.get('/msgdev/:groupId/:msg',(req, res) => {
 	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
 });
 
+app.get('/msg3bb/:groupId/:msg',(req, res) => {
+  		
+	client.pushMessage(req.params.groupId, {
+  		type: 'text',
+  		text: req.params.msg,
+	});
+	console.log("Group : "+req.params.groupId+" Message :"+req.params.msg);
+	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
+});
+
 app.post('/webhook3bb', middleware(config3BB), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
