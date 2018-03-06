@@ -9,8 +9,12 @@ const config = {
   channelSecret: '17bd5614fefc02b11e78ad145173b22b'
 }
 
-
 const configDev = {
+  channelAccessToken: '3NI2H6cTit07WzGMjeT+eVuT6XTCmJ887/h7MaGxZPywSwVTXDyqiDP5J7vYtQmzXD02341vXEGVnjzm6mM4x54asOM5Ebe9O/jtGMyIWwTVOaQIuz8Kb2DI+77XsoKvbqInRA8QWiPcVsgVlHgaSgdB04t89/1O/w1cDnyilFU=',
+  channelSecret: 'ed4470bbaf9d7871bfbb1b2666fdd52f'
+}
+
+const config3BB = {
   channelAccessToken: '3NI2H6cTit07WzGMjeT+eVuT6XTCmJ887/h7MaGxZPywSwVTXDyqiDP5J7vYtQmzXD02341vXEGVnjzm6mM4x54asOM5Ebe9O/jtGMyIWwTVOaQIuz8Kb2DI+77XsoKvbqInRA8QWiPcVsgVlHgaSgdB04t89/1O/w1cDnyilFU=',
   channelSecret: 'ed4470bbaf9d7871bfbb1b2666fdd52f'
 }
@@ -27,7 +31,28 @@ app.get('/msgdev/:groupId/:msg',(req, res) => {
 	});
 	console.log("Group : "+req.params.groupId+" Message :"+req.params.msg);
 	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
-});	
+});
+
+app.post('/webhook3bb', middleware(config3BB), (req, res) => {
+  console.log(req.body.events);
+  res.json(req.body.events) // req.body will be webhook event object
+  const event = req.body.events[0];
+  console.log(event);
+  if (event.type === 'message') {
+    const message = event.message;
+    if (message.type === 'text' && message.text === 'Bot Status') {
+      console.log("USER ID:"+event.source.userId);
+      client.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'I\'m Running'
+      }).catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
+      });
+    }
+  }
+});
 
 
 app.post('/webhookdev', middleware(configDev), (req, res) => {
