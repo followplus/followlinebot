@@ -26,10 +26,10 @@ app.get('/msgdev', middleware(configDev), (req, res) => {
 	});
 });	
 
-app.get('/msg', middleware(configDev), (req, res) => {
+app.get('/msg', middleware(config), (req, res) => {
 	client.pushMessage('Cdac78612063d56cf72edde22bfbb7513', {
   		type: 'text',
-  		text: 'hello, world DEV',
+  		text: 'hello, world',
 	});
 });
 
