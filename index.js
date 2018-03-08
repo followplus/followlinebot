@@ -1,8 +1,10 @@
 const express = require('express')
+const bodyParser = require('body-parser');
 const middleware = require('@line/bot-sdk').middleware
 const Client = require('@line/bot-sdk').Client;
 
 const app = express()
+app.use(bodyParser.json());
 
 const config = {
   channelAccessToken: 'p5lgfavV9OOvKaVfuST/I2hUoxUyghh02ErUY7d1eyrrLGNzNFmWMha2K1Xd/xv19Bjh1wTfpNFDuwqAtJ9dW25EjwjIGZM+ayNGqb6dU5pXnuN7S8aqr2yzpWYtlMnKCxkkeOmWVtpH0F7pu33ilQdB04t89/1O/w1cDnyilFU=',
@@ -69,6 +71,13 @@ app.get('/stickerTbbBilling/:groupId/:packageId/:stickerId',(req, res) => {
 	});
 	console.log("Group : "+req.params.groupId+" Sticker :"+req.params.packageId+" : "+req.params.stickerId);
 	res.send("Group : "+req.params.groupId+" Sticker :"+req.params.packageId+" : "+req.params.stickerId);
+});
+
+app.post('/jsonTbbBilling/:groupId',(req, res) => {
+  	console.log(req.body);	
+	//clientTbbBilling.pushMessage(req.params.groupId, JSON.parse);
+	//console.log("Group : "+req.params.groupId+" Sticker :"+req.params.packageId+" : "+req.params.stickerId);
+	res.send("Group : "+req.params.groupId+" JSON :"+req.body);
 });
 
 
