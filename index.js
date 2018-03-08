@@ -74,10 +74,10 @@ app.get('/stickerTbbBilling/:groupId/:packageId/:stickerId',(req, res) => {
 });
 
 app.post('/jsonTbbBilling/:groupId',(req, res) => {
-  	console.log(req.body);	
-	//clientTbbBilling.pushMessage(req.params.groupId, JSON.parse);
-	//console.log("Group : "+req.params.groupId+" Sticker :"+req.params.packageId+" : "+req.params.stickerId);
-	res.send("Group : "+req.params.groupId+" JSON :"+req.body);
+  	
+	clientTbbBilling.pushMessage(req.params.groupId, req.body);
+	console.log("Group : "+req.params.groupId+" JSON :"+JSON.stringify(req.body));
+	res.send("Group : "+req.params.groupId+" JSON :"+JSON.stringify(req.body));
 });
 
 
