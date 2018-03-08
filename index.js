@@ -63,7 +63,7 @@ app.get('/msgTbbBilling/:groupId/:msg',(req, res) => {
 app.get('/stickerTbbBilling/:groupId/:packageId/:stickerId',(req, res) => {
   		
 	clientTbbBilling.pushMessage(req.params.groupId, {  		
-		type: "sticker",
+		type: 'sticker',
   		packageId: req.params.packageId,
   		stickerId: req.params.stickerId,
 	});
