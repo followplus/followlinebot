@@ -19,8 +19,14 @@ const config3BB = {
   channelSecret: '726564d0dd1ad16110d6dbabf9b93158'
 }
 
+const configTbbBilling = {
+  channelAccessToken: 'Baq3FoOSsnd/e12g8nUTZdMWK3xJgrzq1cxL8WWqGmtta5M+jc/hs9gx6fOmUfHhzEXoCmknO3+9XwJGgAbJbPvhomGp8LzIZ2KkXbJ+kXLEUVN2EVZXd5mI8A96epQr5XmOa7qfeQiWhFiu7tyAEQdB04t89/1O/w1cDnyilFU=',
+  channelSecret: 'fd00d0ad8525c7d539d92eeba75bf9c4'
+}
+
 const client = new Client(configDev);
 const client3bb = new Client(config3BB);
+const clientTbbBilling = new Client(configTbbBilling);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -44,7 +50,37 @@ app.get('/msg3bb/:groupId/:msg',(req, res) => {
 	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
 });
 
+app.get('/msgTbbBilling/:groupId/:msg',(req, res) => {
+  		
+	client3bb.pushMessage(req.params.groupId, {
+  		type: 'text',
+  		text: req.params.msg,
+	});
+	console.log("Group : "+req.params.groupId+" Message :"+req.params.msg);
+	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
+});
+
 app.post('/webhook3bb', middleware(config3BB), (req, res) => {
+  console.log(req.body.events);
+  res.json(req.body.events) // req.body will be webhook event object
+  const event = req.body.events[0];
+  if (event.type === 'message') {
+    const message = event.message;
+    if (message.type === 'text' && message.text === 'BotStatus') {
+      console.log("USER ID:"+event.source.userId);
+      client3bb.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'I\'m Running : '+event.source.groupId
+      }).catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
+      });	    
+    }
+  }
+});
+
+app.post('/tbbbilling', middleware(config3BB), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
   const event = req.body.events[0];
