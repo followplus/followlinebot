@@ -60,6 +60,18 @@ app.get('/msgTbbBilling/:groupId/:msg',(req, res) => {
 	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
 });
 
+app.get('/stickerTbbBilling/:groupId/:packageId/:stickerId',(req, res) => {
+  		
+	clientTbbBilling.pushMessage(req.params.groupId, {  		
+		type: "sticker",
+  		packageId: req.params.packageId,
+  		stickerId: req.params.stickerId,
+	});
+	console.log("Group : "+req.params.groupId+" Sticker :"+req.params.packageId+" : "+req.params.stickerId);
+	res.send("Group : "+req.params.groupId+" Sticker :"+req.params.packageId+" : "+req.params.stickerId);
+});
+
+
 app.post('/webhook3bb', middleware(config3BB), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
