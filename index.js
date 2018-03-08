@@ -80,7 +80,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
   }
 });
 
-app.post('/tbbbilling', middleware(config3BB), (req, res) => {
+app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
   const event = req.body.events[0];
@@ -88,7 +88,7 @@ app.post('/tbbbilling', middleware(config3BB), (req, res) => {
     const message = event.message;
     if (message.type === 'text' && message.text === 'BotStatus') {
       console.log("USER ID:"+event.source.userId);
-      client3bb.replyMessage(event.replyToken, {
+      clientTbbBilling.replyMessage(event.replyToken, {
         type: 'text',
         text: 'I\'m Running : '+event.source.groupId
       }).catch((err) => {
