@@ -52,7 +52,7 @@ app.get('/msg3bb/:groupId/:msg',(req, res) => {
 
 app.get('/msgTbbBilling/:groupId/:msg',(req, res) => {
   		
-	client3bb.pushMessage(req.params.groupId, {
+	clientTbbBilling.pushMessage(req.params.groupId, {
   		type: 'text',
   		text: req.params.msg,
 	});
