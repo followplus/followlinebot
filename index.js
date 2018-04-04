@@ -1,6 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const middleware = require('@line/bot-sdk').middleware
+const JSONParseError = require('@line/bot-sdk').JSONParseError
+const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
 const Client = require('@line/bot-sdk').Client;
 
 const app = express()
@@ -100,7 +102,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
     }
   }
 });
-/*
+
 app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
   console.log(req.body);
   console.log(req.body.events);
@@ -121,11 +123,6 @@ app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
     }
   }
 });
-*/
-app.post('/tbbbilling', (req, res) => {
-	console.log(req);
-});
-
 
 app.post('/webhookdev', middleware(configDev), (req, res) => {
   console.log(req.body.events);
