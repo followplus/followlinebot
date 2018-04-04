@@ -102,6 +102,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
 });
 
 app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
+  console.log(req.body);
   console.log(req.body.events);
   res.json(req.body.events) // req.body will be webhook event object
   const event = req.body.events[0];
