@@ -126,7 +126,7 @@ app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
 });
 */
 app.post('/tbbbilling', (req, res) => {
-  console.log(req);
+  console.log(req.body);
   res.json({})
 })
 
