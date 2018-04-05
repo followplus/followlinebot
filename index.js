@@ -126,11 +126,23 @@ app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
 });
 */
 app.post('/tbbbilling', (req, res) => {
-  console.log(req.body);
+  res.json(req.body.events)
   const event = req.body.events[0]
-  console.log(event);
-  res.json({})
-})
+  if (event.type === 'message') {
+    const message = event.message;
+    if (message.type === 'text' && message.text === 'BotStatus') {
+      console.log("USER ID:"+event.source.userId);
+      clientTbbBilling.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'I\'m Running : '+event.source.groupId
+      }).catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
+      });	    
+    }
+  }  
+});
 
 
 app.post('/webhookdev', middleware(configDev), (req, res) => {
