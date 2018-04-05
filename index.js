@@ -103,6 +103,7 @@ app.post('/webhook3bb', middleware(config3BB), (req, res) => {
   }
 });
 
+/*
 app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
   console.log(req.body);
   console.log(req.body.events);
@@ -123,6 +124,12 @@ app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
     }
   }
 });
+*/
+app.post('/tbbbilling', (req, res) => {
+  console.log(req);
+  res.json({})
+})
+
 
 app.post('/webhookdev', middleware(configDev), (req, res) => {
   console.log(req.body.events);
