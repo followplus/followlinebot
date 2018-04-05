@@ -126,6 +126,7 @@ app.post('/tbbbilling', middleware(configTbbBilling), (req, res) => {
 });
 */
 app.post('/tbbbilling', (req, res) => {
+  console.log(req.body.events);
   res.json(req.body.events)
   const event = req.body.events[0]
   if (event.type === 'message') {
