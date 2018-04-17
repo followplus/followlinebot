@@ -4,8 +4,10 @@ const middleware = require('@line/bot-sdk').middleware
 const JSONParseError = require('@line/bot-sdk').JSONParseError
 const SignatureValidationFailed = require('@line/bot-sdk').SignatureValidationFailed
 const Client = require('@line/bot-sdk').Client;
+const cors = require('cors')
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json());
 
 const config = {
