@@ -28,9 +28,15 @@ const configTbbBilling = {
   channelSecret: 'fd00d0ad8525c7d539d92eeba75bf9c4'
 }
 
+const configTbbBCS = {
+  channelAccessToken: 'LwD8RDHY7cIt0zu8MDXcRcXt666kHvfQGdw5MNRMkp7ctHBIBVqn0R6OTRGnBT573YyjTa97LT6uOLFPYsnnDlmUVho8M80RJQfJDTfuyWheDNjEko4MrJ14UTrNev8C/uTk/1lxDSBBzcka0d3dUwdB04t89/1O/w1cDnyilFU=',
+  channelSecret: '0e1f06b948def6ecaeffe0a009525f37'
+}
+
 const client = new Client(configDev);
 const client3bb = new Client(config3BB);
 const clientTbbBilling = new Client(configTbbBilling);
+const clientTbbBCS = new Client(configTbbBCS);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -57,6 +63,15 @@ app.get('/msg3bb/:groupId/:msg',(req, res) => {
 app.get('/msgTbbBilling/:groupId/:msg',(req, res) => {
   		
 	clientTbbBilling.pushMessage(req.params.groupId, {
+  		type: 'text',
+  		text: req.params.msg,
+	});
+	console.log("Group : "+req.params.groupId+" Message :"+req.params.msg);
+	res.send("Group : "+req.params.groupId+" Message :"+req.params.msg);
+});
+
+app.get('/msgTbbBCS/:groupId/:msg',(req, res) => {  		
+	clientTbbBCS.pushMessage(req.params.groupId, {
   		type: 'text',
   		text: req.params.msg,
 	});
@@ -134,6 +149,26 @@ app.post('/tbbbilling', (req, res) => {
     if (message.type === 'text' && message.text === 'BotStatus') {
       console.log("USER ID:"+event.source.userId);
       clientTbbBilling.replyMessage(event.replyToken, {
+        type: 'text',
+        text: 'I\'m Running : '+event.source.groupId
+      }).catch((err) => {
+        if (err instanceof HTTPError) {
+          console.error(err.statusCode);
+        }
+      });	    
+    }
+  }  
+});
+
+app.post('/tbbbcs', (req, res) => {
+  console.log(req.body.events);
+  res.json(req.body.events)
+  const event = req.body.events[0]
+  if (event.type === 'message') {
+    const message = event.message;
+    if (message.type === 'text' && message.text === 'BotStatus') {
+      console.log("USER ID:"+event.source.userId);
+      clientTbbBCS.replyMessage(event.replyToken, {
         type: 'text',
         text: 'I\'m Running : '+event.source.groupId
       }).catch((err) => {
